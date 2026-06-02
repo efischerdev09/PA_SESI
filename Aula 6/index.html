@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora do Fischerdev</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f9f9f9;
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: red;
+            color: white;
+            cursor: pointer;
+        }
+        #resultado {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Calculadora</h2>
+
+    <input type="number" id="numero1" placeholder="Digite um número">
+    
+    <select id="operador">
+        <option value="+"> + (Somar)</option>
+        <option value="-"> - (Subtrair)</option>
+        <option value="*"> * (Multiplicar)</option>
+        <option value="/"> / (Dividir)</option>
+    </select>
+
+    <input type="number" id="numero2" placeholder="Digite outro número">
+
+    <button onclick="fazerConta()">Calcular</button>
+
+    <p id="resultado">Resultado: </p>
+
+    <script>
+        function fazerConta() {
+            let n1 = Number(document.getElementById("numero1").value);
+            let n2 = Number(document.getElementById("numero2").value);
+            let op = document.getElementById("operador").value;
+            
+            let resultadoFinal;
+
+            if (document.getElementById("numero1").value === "" || document.getElementById("numero2").value === "") {
+                document.getElementById("resultado").innerText = "Por favor, preencha os dois campos!";
+                return; 
+            }
+
+            if (op === "+") {
+                resultadoFinal = n1 + n2;
+            }
+            if (op === "-") {
+                resultadoFinal = n1 - n2;
+            }
+            if (op === "*") {
+                resultadoFinal = n1 * n2;
+            }
+            if (op === "/") {
+                if (n2 === 0) {
+                    document.getElementById("resultado").innerText = "Não é possível dividir por zero!";
+                    return; 
+                }
+                resultadoFinal = n1 / n2;
+            }
+            document.getElementById("resultado").innerText = "Resultado: " + resultadoFinal;
+        }
+    </script>
+
+</body>
+</html>
